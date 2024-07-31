@@ -21,6 +21,14 @@ jobs:
         uses: josStorer/get-current-time@v2.0.2
         id: current-time
 
+      - name: Commit generated files
+        uses: EndBug/add-and-commit@v9
+        with:
+          commit: --allow-empty
+          message: 'v${{ github.run_number }} (${{ steps.current-time.outputs.time }})'
+          tag: 'v${{ github.run_number }}'
+          push: 'origin main --force'
+
       - name: Create release
         uses: ncipollo/release-action@v1
         with:
