@@ -15,17 +15,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      # - name: Checkout test_workflow_dispatch_source
-      #   uses: snow-actions/sparse-checkout@v1.2.0
-      #   with:
-      #     token: ${{ secrets.GITHUB_TOKEN }}
-      #     repository: s0nerik/test_workflow_dispatch_source
-      #     filter: blob:none
-
-      - name: Get current time
-        uses: josStorer/get-current-time@v2.0.2
-        id: current-time
-
       - name: Create new commit
         uses: EndBug/add-and-commit@v9
         with:
