@@ -1,5 +1,10 @@
 name: Generate a new release from the commit in test_workflow_dispatch_source
-on: [workflow_dispatch, push]
+on: 
+  workflow_dispatch:
+    inputs:
+      commit_message:
+        default: ''
+  push: {}
 jobs:
   generate:
     runs-on: ubuntu-latest
