@@ -2,7 +2,7 @@ name: Generate a new release from the commit in test_workflow_dispatch_source
 on: 
   workflow_dispatch:
     inputs:
-      commit_message:
+      message:
         default: ''
   push: {}
 jobs:
@@ -19,7 +19,7 @@ jobs:
         uses: EndBug/add-and-commit@v9
         with:
           commit: --allow-empty
-          message: ${{ github.event.inputs.commit_message }}
+          message: ${{ github.event.inputs.message }}
           tag: 'v${{ github.run_number }}'
           push: 'origin main --force'
 
