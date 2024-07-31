@@ -29,9 +29,6 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           tag: 'v${{ github.run_number }}'
-          name: |
-            v${{ github.run_number }}
-            https://github.com/s0nerik/test_workflow_dispatch_source/commit/${{ github.event.inputs.commit_sha }}
           body: |
             ${{ github.event.inputs.commit_message }}
 
