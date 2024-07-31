@@ -2,7 +2,9 @@ name: Generate a new release from the commit in test_workflow_dispatch_source
 on: 
   workflow_dispatch:
     inputs:
-      message:
+      commit_sha:
+        default: ''
+      commit_message:
         default: ''
   push: {}
 jobs:
@@ -19,7 +21,7 @@ jobs:
         uses: EndBug/add-and-commit@v9
         with:
           commit: --allow-empty
-          message: ${{ github.event.inputs.message }}
+          message: ${{ github.event.inputs.commit_message }}
           tag: 'v${{ github.run_number }}'
           push: 'origin main --force'
 
@@ -27,3 +29,10 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           tag: 'v${{ github.run_number }}'
+          name: |
+            v${{ github.run_number }}
+            https://github.com/s0nerik/test_workflow_dispatch_source/commit/${{ github.event.inputs.commit_sha }}
+          body: |
+            ${{ github.event.inputs.commit_message }}
+
+            https://github.com/s0nerik/test_workflow_dispatch_source/commit/${{ github.event.inputs.commit_sha }}
